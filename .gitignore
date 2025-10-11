@@ -37,19 +37,17 @@ ENV/
 .ipynb_checkpoints
 *.ipynb
 
-# Model files
+# Model files (trained weights)
 *.h5
 *.hdf5
 *.pb
 saved_models/
-models/
 checkpoints/
 
-# Data files
+# Data files (datasets)
 *.csv
 *.npy
 *.npz
-data/
 datasets/
 
 # Logs
