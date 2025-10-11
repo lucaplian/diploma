@@ -1,0 +1,35 @@
+    For Human Activity Recognition (HAR):
+    A dataset for Wi-Fi-based human-to-human interaction recognition
+    Author(s): Rami Alazrai, Ali Awad, Baha' Alsaify, Mohammad Hababeh, Mohammad I. Daoud
+    Description: Data captures from 40 subjects performing 12 human-to-human interactions. It is in MATLAB format. 
+    https://data.mendeley.com/datasets/3dhn4xnjxw/1
+
+    Name: Channel state information (WiFi traces) for 6 activities
+    Author(s): Jeroen Klein Brinke
+    Description: Data captures for 6 activities across several subjects on different days. It is in MATLAB formmat
+    Overview: https://data.4tu.nl/articles/dataset/Channel_state_information_WiFi_traces_for_6_activities/12692816/1
+
+    Name: Wifi_Activity_Recognition using LSTM
+    Author(s): Siamak Yousefi, Hirokazu Narui, Sankalp Dayal, Stefano Ermon, Shahrokh Valaee
+    Description: Data captures for 7 activities, including model and code examples.
+    Overview: https://github.com/ermongroup/Wifi_Activity_Recognition
+
+    Name: CSI-HAR Dataset
+    Author(s): Parisa Fard Moshiri
+    Description: WiFi CSI captures for walking, standing, running, falling, sitting, and lying down, with code for activity recognition.
+    Overview: https://github.com/parisafm/CSI-HAR-Dataset
+
+    Name: WiFi CSI-Based HAR Dataset
+    Author(s): Andrew Zhuravchak
+    Description: HAR dataset featuring walking, sitting, standing, lying, getting up, getting down, and “no activity”; available in MATLAB format.
+    Overview: https://figshare.com/articles/dataset/Dataset_for_Human_Activity_Recognition_using_Wi-Fi_Channel_State_Information_CSI_data/14386892
+    
+    Name: Temporal Stability on Human Activity Recognition based on WiFi CSI
+    Author(s): Matey-Sanz et al.
+    Description: CSI dataset for lying down, falling, walking, seated, standing up, turning, and sitting down.
+    Overview: https://github.com/GeoTecINIT/stability-csi-har
+
+    Name: WiFi-CSI-Sensing-Benchmark
+    Author(s): Yan Chen et al.
+    Description: Benchmark dataset with activities including walking, sitting, lying down, standing up, and falling, for WiFi CSI sensing research.
+    Overview: https://github.com/xyanchen/WiFi-CSI-Sensing-Benchmark
