@@ -1,0 +1,63 @@
+# Smart Home AI System Configuration
+
+# Model Parameters
+model:
+  sequence_length: 50
+  n_features: 10
+  n_actions: 5
+  
+  # BI-LSTM Detector Configuration
+  detector:
+    hidden_units: 128
+    dropout_rate: 0.3
+    num_classes: 3  # normal, automated, optimising
+  
+  # LSTM Optimizer Configuration
+  optimizer:
+    hidden_units: 128
+    dropout_rate: 0.3
+
+# Training Parameters
+training:
+  epochs: 50
+  batch_size: 32
+  patience: 10
+  validation_split: 0.15
+
+# Data Processing
+preprocessing:
+  scaling_method: 'standard'  # 'standard' or 'minmax'
+  handle_missing: 'interpolate'  # 'interpolate', 'forward_fill', or 'mean'
+
+# Action Definitions
+actions:
+  0: "Adjust lighting based on occupancy"
+  1: "Optimize HVAC temperature settings"
+  2: "Manage appliance power consumption"
+  3: "Activate security protocols"
+  4: "Schedule device operations"
+
+# Sensor Types (AAL, HAR, HA domains)
+sensors:
+  - motion
+  - door
+  - temperature
+  - humidity
+  - light
+  - energy
+  - presence
+  - pressure
+  - appliance
+  - location
+
+# Behaviour Detection Thresholds
+thresholds:
+  confidence_minimum: 0.6
+  automated_threshold: 0.7
+  optimising_threshold: 0.7
+
+# Logging Configuration
+logging:
+  level: 'INFO'
+  log_actions: true
+  save_history: true
