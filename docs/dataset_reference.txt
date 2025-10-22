@@ -1,35 +1,110 @@
-    For Human Activity Recognition (HAR):
-    A dataset for Wi-Fi-based human-to-human interaction recognition
-    Author(s): Rami Alazrai, Ali Awad, Baha' Alsaify, Mohammad Hababeh, Mohammad I. Daoud
-    Description: Data captures from 40 subjects performing 12 human-to-human interactions. It is in MATLAB format. 
-    https://data.mendeley.com/datasets/3dhn4xnjxw/1
+    Name: A dataset for Wi-Fi-based human-to-human interaction recognition
+    Author(s): Rami Alazrai, Ali Awad, Baha Alsaify, Mohammad Hababeh, Mohammad I. Daoud
+    Description: Wi-Fi recordings of twelve two-person interactions (approaching, departing, handshaking, high five, 
+    hugging, kicking L/R, pointing L/R, punching L/R, pushing) performed by 40 pairs. Each pair repeats every interaction 10 times
+    (total 4,800 trials). Files are MATLAB .mat. The data is grouped by pair (one folder per pair), with 120 files per 
+    pair (12 interactions x 10 trials). Each trial file is a list of Wi-Fi packets over time. Every packet carries: a timestamp, 
+    signal strength (RSSI), and CSI (complex numbers).  Each packet also has a label telling you what was happening at 
+    that moment: one of I1-I12 for the specific interaction, or I13 for the steady interval (the subjects stand still 
+    before/after the action). This lets you slice exactly the “no-movement” vs “interaction” parts.  ￼
+        - If you stack packets in time (rows) and lay out frequencies (columns), you get a matrix/heatmap where color shows 
+        how strong the channel is at each frequency at each instant. Movements (e.g., punch vs hug) produce different 
+        change patterns over time and across frequencies. That is the information models learn from.  ￼
+        - Why values vary: human motion changes reflections and paths of the Wi-Fi signal; each frequency “feels” it differently, 
+        so each column (subcarrier) wiggles in its own way. The per-packet labels make it straightforward to align those wiggles 
+        with the exact interaction phase.  ￼
 
+    Paper: https://www.sciencedirect.com/science/article/pii/S235234092030562X
+    Dataset: https://data.mendeley.com/datasets/3dhn4xnjxw/1
+   
     Name: Channel state information (WiFi traces) for 6 activities
-    Author(s): Jeroen Klein Brinke
-    Description: Data captures for 6 activities across several subjects on different days. It is in MATLAB formmat
-    Overview: https://data.4tu.nl/articles/dataset/Channel_state_information_WiFi_traces_for_6_activities/12692816/1
+    Author(s): Jeroen Klein Brinke, Nirvana Meratnia
+    Description:
+    This dataset contains WiFi CSI (Channel State Information) recordings of six human activities — clap, walk, wave, jump, sit, and fall — 
+    performed by nine people across multiple days in a realistic indoor environment (similar to a living room). The goal is to support 
+    research in human activity recognition (HAR) using non-invasive, device-free sensing, without needing people to wear sensors.
+    
 
+    Each sample is a short recording of one person performing an activity (e.g., walking or sitting).
+	For each sample, the WiFi CSI is recorded in the form of a 3×3×30 matrix:
+	-	3 transmit antennas
+	-	3 receive antennas
+	-	30 subcarriers (frequency channels)
+
+    
+	The CSI is captured at 20 samples per second for 5 seconds, so each sample contains up to 100 frames (rows of data).
+	The values are real-valued amplitudes that reflect how the WiFi signal was changed by the movement of the person in the room. These changes are caused by reflections, scattering, and absorption of the signal as the person moves.
+	The final format is often reshaped to a 70×30×9 matrix, where:
+	-	70 = time frames used (one every 0.05 seconds)
+	-	30 = subcarriers (frequencies)
+	-	9 = combinations of antenna pairs (3 Tx × 3 Rx)
+    Dataset overview: https://data.4tu.nl/articles/dataset/Channel_state_information_WiFi_traces_for_6_activities/12692816/1
+    Paper: https://dl.acm.org/doi/10.1145/3363347.3363362
+    
     Name: Wifi_Activity_Recognition using LSTM
     Author(s): Siamak Yousefi, Hirokazu Narui, Sankalp Dayal, Stefano Ermon, Shahrokh Valaee
     Description: Data captures for 7 activities, including model and code examples.
+    WARNING: DATASET CANNOT BE FOUND
+    Paper: https://ieeexplore.ieee.org/document/8067693
     Overview: https://github.com/ermongroup/Wifi_Activity_Recognition
 
     Name: CSI-HAR Dataset
-    Author(s): Parisa Fard Moshiri
-    Description: WiFi CSI captures for walking, standing, running, falling, sitting, and lying down, with code for activity recognition.
+    Author(s): Parisa Fard Moshiri, Mohammad Nabati, Reza Shahbazian, Seyed Ali Ghorashi
+    Description: WiFi CSI captures seven daily human activities, including walk, run, fall, lie down, sit down, stand up, and bend, with code for activity recognition.
+    The CSI matrices have 52 columns (available data subcarriers) and 600 up to 1100 rows depending on the period of each activity.
+    Initially, there were more subcarriers, but due to removing null and pilot subcarriers, they are reduced to 52 carriers from which we can extract frequency values.
+    They reflect amplitude values the complex CSI values, indicating how much signal energy is present at that subcarrier at that point in time. They correspond to the frequencies used for each subcarrier.   
+    Due to reflections induced by human activity, each subcarrier for any given link experiences a variation.
+    Paper: https://ieeexplore.ieee.org/document/9721516
     Overview: https://github.com/parisafm/CSI-HAR-Dataset
 
     Name: WiFi CSI-Based HAR Dataset
-    Author(s): Andrew Zhuravchak
-    Description: HAR dataset featuring walking, sitting, standing, lying, getting up, getting down, and “no activity”; available in MATLAB format.
-    Overview: https://figshare.com/articles/dataset/Dataset_for_Human_Activity_Recognition_using_Wi-Fi_Channel_State_Information_CSI_data/14386892
-    
-    Name: Temporal Stability on Human Activity Recognition based on WiFi CSI
-    Author(s): Matey-Sanz et al.
-    Description: CSI dataset for lying down, falling, walking, seated, standing up, turning, and sitting down.
-    Overview: https://github.com/GeoTecINIT/stability-csi-har
+    Author(s): Andrii (Andrew) Zhuravchak
+    Description: Wi-Fi recordings for seven everyday activities: walking, sitting, standing, lying, getting up, getting down, 
+    and no activity. Collected in multiple rooms to be closer to real-life use. Provided with a paper and code examples for building models.  ￼
+        -	Each sample is again a time × frequency matrix derived from packets: rows = moments in time, columns = subcarriers; 
+        values = CSI amplitude at that time/frequency. Files also include labels per packet/sequence and, in this dataset, 
+        linked images + bounding boxes for the person (useful for cross-modal work, but CSI alone is enough for HAR).  ￼
+        -	Why values vary: transitions like get up/get down create short, sharp bursts in the matrix; lying/sitting look steadier;
+        walking shows a periodic pattern. The paper discusses how class difficulty correlates with how much data was collected for each
+        activity (scarce classes are harder).  ￼
 
-    Name: WiFi-CSI-Sensing-Benchmark
-    Author(s): Yan Chen et al.
-    Description: Benchmark dataset with activities including walking, sitting, lying down, standing up, and falling, for WiFi CSI sensing research.
-    Overview: https://github.com/xyanchen/WiFi-CSI-Sensing-Benchmark
+    Paper: https://www.researchgate.net/publication/359009446_Human_Activity_Recognition_based_on_Wi-Fi_CSI_Data_-A_Deep_Neural_Network_Approach
+    Overview: https://figshare.com/articles/dataset/Dataset_for_Human_Activity_Recognition_using_Wi-Fi_Channel_State_Information_CSI_data/14386892
+
+
+For actuators:
+    Name: Open Smart Home Measurement    
+    Author(s): Mads Holten Rasmussen, Peter Bonsma, Pieter Pauwels, Jyrki Oraskari, Georg Ferdinand Schneider
+    Description: Each CSV file in the Measurements folder holds a single time series for one sensor in one room (Bathroom, Kitchen, Rooms 1–3, Toilet).
+	It has a UNIX timestamp and the sensor reading (indoor, outdoor and set point temperatures, and humidity). 
+    Sensor types:
+	•	ThermostatTemperature: air temperature at the radiator thermostat (°C);
+	•	Brightness: luminance (float).
+	•	Humidity: relative humidity (%)
+	•	Temperature: indoor air temperature (°C, float).
+	•	SetpointHistory: scheduled temperature setpoint (°C, float).
+	•	OutdoorTemperature: outside air temperature from a virtual weather service (°C, float). 
+    Period of measurement: 9 March 2017 07:31:25 GMT+01:00 to 6 June 2017 05:05:51 GMT+01:00
+    Paper: Schneider, G. F., Rasmussen, M. H., Bonsma, P., Oraskari, J., & Pauwels, P. (2018). Linked building data for modular building information modelling of a smart home. In 11th European Conference on Product and Process Modelling (pp. 407-414). CRC Pres
+    Overview: https://github.com/TechnicalBuildingSystems/OpenSmartHomeData
+
+
+    Name: Smart Home Appliance Usage and Electrical Parameters Dataset (2020–2023)
+    Author(s): Afroz
+    Description: This dataset consists of around 49,000 simulated observations covering four years (2020–2023) of smart home activity. 
+    It focuses on monitoring five key household appliances — Television, Dryer, Oven, Refrigerator, and Microwave — alongside essential 
+    electrical parameters such as line voltage and local voltage. Each record includes a unique transaction ID and a UNIX timestamp, allowing
+    temporal analysis of appliance behavior and energy conditions.
+    Period of measurement:  1 January 2020 00:00:00 GMT +0 to  30 November 2023 23:33:47 GMT +0
+    Overview: https://www.kaggle.com/datasets/pythonafroz/smart-home-dataset?resource=download-directory
+
+    Name: Smart Office IoT Dataset (CoreLab Testbed, 144 Hours)
+    Author(s): Seonyeong Heo, Seungbin Song, Bongjun Kim, Hanjun Kim
+    Description: This dataset contains sensor data collected from a smart office testbed over a continuous period of 144 hours. One agent performs
+    a set of irregular, predefined actions (e.g., opening a window) while data are gathered from 19 IoT devices. The dataset includes sensor readings, 
+    defined data items, events, and generated rules, all represented as MATLAB .mat files and classes designed for IoT data acquisition and rule-based reasoning.
+    Period of measurement: 144 hours (6 days) of smart office activity under controlled testbed conditions.
+    Paper: Sharing-aware Data Acquisition Scheduling for Multiple Rules in the IoT. Proceedings of the IEEE Real-Time And Embedded Technology And Applications Symposium (RTAS), April 2020.
+    License: MIT License
+    Overview: https://github.com/corelab-src/smart-office-dataset
